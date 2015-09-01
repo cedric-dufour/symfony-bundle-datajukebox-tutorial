@@ -1,0 +1,55 @@
+DataJukeboxTutorial_home:
+  path: /DataJukeboxTutorial
+  defaults: { _controller: FrameworkBundle:Redirect:redirect, route: SampleBlogEntry_list }
+  
+SampleBlogCategory_list:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Categories
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:list }
+
+SampleBlogCategory_detail:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/{_pk}
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:detail }
+  requirements:
+    _pk: \d{1,}
+
+SampleBlogCategory_insert:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/insert
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:insert }
+
+SampleBlogCategory_update:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/update/{_pk}
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:update }
+  requirements:
+    _pk: \d{1,}
+
+SampleBlogCategory_delete:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/delete/{_pk}
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:delete, _pk: null }
+  requirements:
+    _pk: \d{1,}
+
+SampleBlogEntry_list:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entries
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:list }
+
+SampleBlogEntry_detail:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/{_pk}
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:detail }
+  requirements:
+    _pk: \d{1,}
+
+SampleBlogEntry_insert:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/insert
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:insert }
+
+SampleBlogEntry_update:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/update/{_pk}
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:update }
+  requirements:
+    _pk: \d{1,}
+
+SampleBlogEntry_delete:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/delete/{_pk}
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:delete, _pk: null }
+  requirements:
+    _pk: \d{1,}

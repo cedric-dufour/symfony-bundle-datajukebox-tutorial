@@ -1,0 +1,86 @@
+<refentry id="{@id}">
+
+<refnamediv>
+<refname>PHP/Symfony Data Jukebox Tutorial Bundle - The Tutorial</refname>
+<refpurpose>Learn to forget all about views and concentrate entirely on the model.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<author>
+Idiap Research Institute
+<authorblurb>{@link http://www.idiap.ch/software/symfony-bundle-datajukebox http://www.idiap.ch/software/symfony-bundle-datajukebox}</authorblurb>
+</author>
+</refsynopsisdiv>
+
+<graphic fileref="DataJukeboxBundle.png" />
+
+{@toc}
+
+
+<refsect1 id="{@id philosophy}">
+<title>The philosophy behind the Data Jukebox Bundle</title>
+<para>The Data Jukebox Bundle sticks to Symfony philosophy as much as possible. Shortly put, one defines <literal>Entities</literal>, which are then manipulated - in the <literal>Controller</literal> - thanks to a corresponding (standard or customized) <literal>Repository</literal>. Rendering is achieved via <literal>Template</literal> while localization is done thanks to <literal>translation files</literal>.</para>
+<para>The Data Jukebox Bundle simply adds <literal>Properties</literal> to the picture, which corresponds to a PHP class where specific methods - matching the <literal>PropertiesInterface</literal> definition - allow to retrieve additional meta-data about the corresponding <literal>Entity</literal> and construct - entirely automatically - the views for the common <literal>CRUD</literal> (Create-Read-Update-Delete) operations.</para>
+<para>The one aspect where the Data Jukebox Bundle differs from Symfony is the way it deals with joined entities. Shortly put: it doesn't! <emphasis>Read</emphasis> operations can not use joined entities the way Symfony does. The idea behind this design decision is that joining entities fields (aka. tables columns) for read purposes is something that is better achieved in SQL views, with all the power of the database engine backing the operation. Thus, while relationships can still be defined and used according to Symfony philosophy when dealing with forms - even within the Data Jukebox Bundle realm - they must be "resolved" at the SQL (view) level when dealing with read actions, with joined columns being returned as scalar values rather than entities (objects). This distinction between the two purposes is implemented using entity inheritance, where an abstract <literal>MappedSuperclass</literal> acts as parent for one standard, table-backed <literal>Entity</literal> and another joined, view-backed <literal>(View)Entity</literal>.</para>
+</refsect1>
+
+
+<refsect1 id="{@id entity}">
+<title>A sample blog application</title>
+<para>A sample blog application will be used to illustrate how to use the Data Jukebox Bundle.</para>
+
+<refsect2 id="{@id entity_category}">
+<title>Blog Category</title>
+<para>To start with, we will define a <emphasis>Blog Category</emphasis> <literal>Entity</literal>:</para>
+{@example SampleBlogCategoryEntity.php}
+<para>The only way it differs from a standard Symfony entity:</para>
+<itemizedList>
+<listitem>it implements the Data Jukebox <emphasis>PrimaryKeyInterface</emphasis> and the corresponding <emphasis>getPrimaryKey</emphasis> method</listitem>
+<listitem>it declares a corresponding <literal>Properties</literal> class, using the annotation <emphasis>@Properties(propertiesClass="...")</emphasis></listitem>
+</itemizedList>
+<para>We will cover those changes when dealing with the application core entity (see below).</para>
+</refsect2>
+
+<refsect2 id="{@id entity_entry}">
+<title>Blog Entry</title>
+<para>We will now define the <emphasis>Blog Entry</emphasis> resources.</para>
+<para>Given the many-to-one relationship with the <emphasis>Blog Category</emphasis> entity and Data Jukebox way of dealing with those, we must first define the parent abstract <literal>SuperClass</literal>:</para>
+{@example SampleBlogEntrySuperclass.php}
+<para>Then we can define the corresponding "standard", table-backed <literal>Entity</literal> (for create/update purposes):</para>
+{@example SampleBlogEntryEntity.php}
+<para>And its joined, view-backed <literal>Entity</literal> (for read purposes), where the <emphasis>Category</emphasis> is no longer an entity/object, but a scalar (string) corresponding to the category name:</para>
+{@example SampleBlogEntryViewEntity.php}
+</refsect2>
+
+<refsect2 id="{@id primary_key_interface}">
+<title>Primary Key Interface</title>
+<para>The <emphasis>Primary Key Interface</emphasis> and its sole <emphasis>getPrimaryKey()</emphasis> method are here to simplify the process of retrieving the entity primary key name(s)/value(s) pair(s). If an entity has more than one field acting as identifier - thus corresponding to a <emphasis>composite</emphasis> primary key - one must just make sure to include all identifier fields in the returned array.</para>
+</refsect2>
+
+<refsect2 id="{@id properties}">
+<title>Properties</title>
+<para>The entity associated <emphasis>Properties</emphasis> is where all the magic of the Data Jukebox Bundle takes its root:</para>
+{@example SampleBlogEntryProperties.php}
+<para>Ok, this is a lengthy definition... but at the end of the day, it says all there is to know about the entity in order to create all views - for create/read/update/delete purposes - automatically, while respecting the business logic that backs the entity.</para>
+</refsect2>
+
+<refsect2 id="{@id controller}">
+<title>Controller</title>
+<para>We can now create the <emphasis>Controller</emphasis> that will create all those views:</para>
+{@example SampleBlogEntryController.php}
+<para>... and this is it!</para>
+</refsect2>
+
+<refsect2 id="{@id tips_tricks}">
+<title>Tips and Tricks</title>
+<para>A few things are worth noting when using the Data Jukebox Bundle:</para>
+<itemizedList>
+<listitem><emphasis>Primary Key (Route) Parameter</emphasis>: the primary key parameter in Data Jukebox routes and controllers MUST be <literal>_pk</literal>, even for entities that have a composite (multiple-fields) primary key.</listitem>
+<listitem><emphasis>Twig Template</emphasis>: you can customite the views as you deem fit, using (Symfony) <literal>form</literal> and (Data Jukebox) <literal>DataJukebox_list</literal>/<literal>DataJukebox_detail</literal> functions in your Twig templates (Note: PHP templates are NOT supported).</listitem>
+<listitem><emphasis>Localization</emphasis>: is achieved using Symfony standard <literal>translations</literal> files, along the handy <emphasis>getMeta</emphasis> method in your <literal>Properties</literal>; just make sure to specify the correct translation <literal>domain</literal>.</listitem>
+</itemizedList>
+</refsect2>
+
+</refsect1>
+
+</refentry> 

@@ -1,0 +1,15 @@
+Source: symfony-bundle-datajukebox-tutorial
+Section: admin
+Priority: optional
+Maintainer: Cedric Dufour <cedric.dufour@idiap.ch>
+Build-Depends: debhelper (>= 8)
+Build-Depends-Indep: php-pear
+Homepage: http://www.idiap.ch/software/symfony-bundle-datajukebox
+Standards-Version: 3.9.4
+
+Package: symfony-bundle-datajukebox-tutorial
+Architecture: all
+Depends: ${misc:Depends}, libapache2-mod-php5 | php5-cgi
+Recommends: symfony-bundle-datajukebox, symfony-bundle-datajukebox-doc
+Suggests: php-symfony (>=2.3)
+Description: PHP/Symfony Data Jukebox Bundle - Tutorial

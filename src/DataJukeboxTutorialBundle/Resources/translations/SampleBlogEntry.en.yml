@@ -1,0 +1,14 @@
+label:
+  _title_list: Articles
+  _title_detail: Article
+  _title_form: Article
+  Title: Title
+  Category: Category
+  Content: Content
+  Tags: Tags
+  
+tooltip:
+  Title: Blog entry (article) title
+  Category: Blog entry (article) category
+  Content: Blog entry (article) content/text
+  Tags: Blog entry (article) tags/keywords

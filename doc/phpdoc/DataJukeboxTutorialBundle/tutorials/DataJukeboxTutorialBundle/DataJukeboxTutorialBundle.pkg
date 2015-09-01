@@ -1,0 +1,200 @@
+<refentry id="{@id}">
+
+<refnamediv>
+<refname>PHP/Symfony Data Jukebox Tutorial Bundle</refname>
+<refpurpose>Learn to forget all about views and concentrate entirely on the model.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<author>
+Idiap Research Institute
+<authorblurb>{@link http://www.idiap.ch/software/symfony-bundle-datajukebox http://www.idiap.ch/software/symfony-bundle-datajukebox}</authorblurb>
+</author>
+</refsynopsisdiv>
+
+<graphic fileref="DataJukeboxBundle.png" />
+
+{@toc}
+
+
+<refsect1 id="{@id whatis}">
+<title>What is the Data Jukebox Tutorial Bundle ?</title>
+<para>The Data Jukebox Tutorial Bundle demonstrates the usage of the Data Jukebox Bundle via a sample blog application, along detailed documentation and explanations.</para>
+</refsect1>
+
+
+<refsect1 id="{@id specs}">
+<title>Specifications</title>
+
+<refsect2 id="{@id specs_depends}">
+<title>Dependencies</title>
+<itemizedList>
+<listitem>[MUST] <literal>Symfony 2.3</literal> or later</listitem>
+<listitem>[MUST] <literal>PHP 5.4</literal> or later</listitem>
+<listitem>[SHOULD] <literal>Data Jukebox Bundle</literal></listitem>
+</itemizedList>
+</refsect2>
+
+</refsect1>
+
+
+<refsect1 id="{@id licence}">
+<title>Licensing</title>
+<para>The Data Jukebox Bundle is distributed under the <emphasis>GNU General Public Licence (GPL) Version 3</emphasis>. The PHP Data Jukebox Bundle includes all resources which contain the mention <literal>Data Jukebox Bundle</literal> in their documentation and licensing preamble.</para>
+<para>Other Open Source resources may come bundled with teh Data Jukebox Bundle release packaging; they are (and must be) used according to their original licence (look for copyright-related files in the folder hierarchy).</para>
+</refsect1>
+
+
+<refsect1 id="{@id download}">
+<title>Downloading</title>
+<para>{@link https://github.com/idiap/symfony-bundle-datajukebox-tutorial/downloads download tree...}</para>
+</refsect1>
+
+
+<refsect1 id="{@id build}">
+<title>Build</title>
+<para><emphasis>NOTE:</emphasis> By &quot;build&quot;, we mean create the necessary tarballs/package required for installation (according to the Installation section below) or distribution.</para>
+
+<refsect2 id="{@id build_tree}">
+<title>[MUST] Obtain the source code</title>
+<screen>
+<![CDATA[
+$ git clone https://github.com/idiap/symfony-bundle-datajukebox-tutorial
+]]>
+</screen>
+<para>[OR]</para>
+<screen>
+<![CDATA[
+$ tar -xjf symfony-bundle-datajukebox-tutorial-source-%{VERSION}.tar.bz2
+$ cd symfony-bundle-datajukebox-tutorial-%{VERSION}
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_source}">
+<title>[MAY] (Re-)build the source tarball</title>
+<screen>
+<![CDATA[
+$ ./debian/rules build-source-tarball
+$ ls -al ../symfony-bundle-datajukebox-tutorial-source-%{VERSION}.tar.bz2
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_install}">
+<title>[MAY] Build the installation tarball</title>
+<screen>
+<![CDATA[
+$ ./debian/rules build-install-tarball
+$ ls -al ../symfony-bundle-datajukebox-tutorial-%{VERSION}.tar.bz2
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_doc}">
+<title>[MAY] Build the documentation tarball</title>
+<screen>
+<![CDATA[
+$ ./debian/rules build-doc-tarball
+$ ls -al ../symfony-bundle-datajukebox-tutorial-doc-%{VERSION}.tar.bz2
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_debian}">
+<title>[MAY] Build the debian packages</title>
+<screen>
+<![CDATA[
+$ debuild -us -uc -b
+$ ls -al ../symfony-bundle-datajukebox-tutorial_%{VERSION}_all.deb
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_debian_source}">
+<title>[MAY] Build the debian source package</title>
+<screen>
+<![CDATA[
+$ debuild -I'.git*' -us -uc -S
+$ ls -al ../symfony-bundle-datajukebox-tutorial_%{VERSION}.dsc ../symfony-bundle-datajukebox-tutorial_%{VERSION}.tar.gz
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_all}">
+<title>[SHOULD] Do it all with a single command</title>
+<screen>
+<![CDATA[
+$ ./debian/rules release
+]]>
+</screen>
+</refsect2>
+
+</refsect1>
+
+
+<refsect1 id="{@id install}">
+<title>Installation</title>
+<para><emphasis>WARNING: The Data Jukebox Tutorial Bundle is actively maintained on Linux. It has not been tested on other platforms.</emphasis></para>
+<para><emphasis>NOTE:</emphasis> We assume a previously working PHP/Symfony setup.</para>
+
+<refsect2 id="{@id install_php}">
+<title>[MUST] Install the Data Jukebox Tutorial Bundle</title>
+
+<refsect3 id="{@id install_php_release}">
+<title>[OR] using the installation and documentation tarballs</title>
+<screen>
+<![CDATA[
+$ INSTALL_DIR='<installation-directory>'
+$ cd "${INSTALL_DIR}"
+$ tar -xjf symfony-bundle-datajukebox-tutorial-%{VERSION}.tar.bz2
+
+$ DOC_DIR='<documentation-directory>'
+$ cd "${DOC_DIR}"
+$ tar -xjf symfony-bundle-datajukebox-tutorial-doc-%{VERSION}.tar.bz2
+]]>
+</screen>
+</refsect3>
+
+<refsect3 id="{@id install_php_debian}">
+<title>[OR] using the debian package</title>
+<screen>
+<![CDATA[
+$ dpkg -i symfony-bundle-datajukebox-tutorial_%{VERSION}_all.deb
+]]>
+</screen>
+</refsect3>
+
+</refsect2>
+
+</refsect1>
+
+
+<refsect1 id="{@id usage}">
+<title>Usage</title>
+<para>The Data Jukebox Tutorial Bundle integrates Symfony the same way as any other bundle. Thus, make sure to:</para>
+<itemizedList>
+<listitem>add the corresponding namespace to your application <emphasis>autoload.php</emphasis></listitem>
+<listitem>instantiate the <literal>DataJukeboxTutorialBundle</literal> in your application <emphasis>AppKernel.php</emphasis></listitem>
+<listitem>create/update all assets:</listitem>
+<screen>
+<![CDATA[
+$ ./app/console assets:install --symlink --relative <web-directory>
+]]>
+</screen>
+<listitem>dump Assetic resources:</listitem>
+<screen>
+<![CDATA[
+$ ./app/console assetic:dump <web-directory>
+]]>
+</screen>
+</itemizedList>
+</refsect1>
+
+
+<refsect1 id="{@id documentation}">
+<title>Further documentation</title>
+<para>The full documentation of the Data Jukebox Tutorial Bundle (including source code) is part of this (phpDocumentor-generated) HTML documentation; make sure to browse through the expandable tree located on the left of this text, as well as switch the documentation context using the drop list located on top of this text.</para>
+</refsect1>
+
+</refentry> 
