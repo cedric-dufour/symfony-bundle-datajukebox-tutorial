@@ -28,8 +28,8 @@ class SampleBlogCategoryController
    */
   public function getAuthorization()
   {
-    $oSecurityContext = $this->get('security.context');
-    if ($oSecurityContext->isGranted('ROLE_BLOG_ADMIN')) return SampleBlogCategoryProperties::AUTH_ADMIN;
+    $oSecurityAuthorizationChecker = $this->get('security.authorization_checker');
+    if ($oSecurityAuthorizationChecker->isGranted('ROLE_BLOG_ADMIN')) return SampleBlogCategoryProperties::AUTH_ADMIN;
     return SampleBlogCategoryProperties::AUTH_PUBLIC;
   }
 

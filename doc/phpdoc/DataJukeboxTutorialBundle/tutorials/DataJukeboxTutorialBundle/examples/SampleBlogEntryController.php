@@ -13,8 +13,8 @@ class SampleBlogEntryController
 
   public function getAuthorization()
   {
-    $oSecurityContext = $this->get('security.context');
-    if ($oSecurityContext->isGranted('ROLE_BLOG_ADMIN')) return SampleBlogEntryProperties::AUTH_ADMIN;
+    $oSecurityAuthorizationChecker = $this->get('security.authorization_checker');
+    if ($oSecurityAuthorizationChecker->isGranted('ROLE_BLOG_ADMIN')) return SampleBlogEntryProperties::AUTH_ADMIN;
     return SampleBlogEntryProperties::AUTH_PUBLIC;
   }
 

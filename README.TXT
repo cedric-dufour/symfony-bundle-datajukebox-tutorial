@@ -13,6 +13,6 @@ explanations.
 Dependencies
 ------------
 
- - [MUST] Symfony 2.3 or later
- - [MUST] PHP 5.4 or later
+ - [MUST] Symfony 2.7 or later
+ - [MUST] PHP 5.3.9 or later
  - [SHOULD] Data Jukebox Bundle

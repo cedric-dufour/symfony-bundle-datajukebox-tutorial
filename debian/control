@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Cedric Dufour <cedric.dufour@idiap.ch>
 Build-Depends: debhelper (>= 8)
 Build-Depends-Indep: php-pear
-Homepage: http://www.idiap.ch/software/symfony-bundle-datajukebox
+Homepage: http://www.idiap.ch/scientific-research/resources/symfony-bundle-datajukebox
 Standards-Version: 3.9.4
 
 Package: symfony-bundle-datajukebox-tutorial
