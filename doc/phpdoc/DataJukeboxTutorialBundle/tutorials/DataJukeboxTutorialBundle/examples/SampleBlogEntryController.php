@@ -91,12 +91,7 @@ class SampleBlogEntryController
       $oEntityManager = $oProperties->getEntityManager();
       $oEntityManager->persist($oData);
       $oEntityManager->flush();
-      return $this->redirect(
-        $this->generateUrl(
-          'SampleBlogEntry_detail',
-          $oFormType->getPrimaryKeySlug($oData)
-        )
-      );
+      return $this->redirectToRoute('SampleBlogEntry_detail', $oFormType->getPrimaryKeySlug($oData));
     }
 
     // Response
@@ -135,12 +130,7 @@ class SampleBlogEntryController
       $oEntityManager = $oProperties->getEntityManager();
       $oEntityManager->persist($oData);
       $oEntityManager->flush();
-      return $this->redirect(
-        $this->generateUrl(
-          'SampleBlogEntry_detail',
-          $oFormType->getPrimaryKeySlug($oData)
-        )
-      );
+      return $this->redirectToRoute('SampleBlogEntry_detail', $oFormType->getPrimaryKeySlug($oData));
     }
 
     // Response
@@ -182,12 +172,7 @@ class SampleBlogEntryController
     }
 
     // Response
-    return $this->redirect(
-      $this->generateUrl(
-        'SampleBlogEntry_list',
-        $oRequest->query->all()
-      )
-    );
+    return $this->redirectToRoute('SampleBlogEntry_list', $oRequest->query->all());
   }
 
 }
