@@ -245,7 +245,7 @@ class SampleBlogEntryProperties
 
   // Custom formatting for specific fields
   public function formatFields(array &$aRow, $iIndex) {
-    if (isset($aRow['Date'])) $aRow['Date|format'] = $aRow['Date']->format('r');
+    if (isset($aRow['Date'])) $aRow['Date_formatted'] = $aRow['Date']->format('r');
   }
 
 }
