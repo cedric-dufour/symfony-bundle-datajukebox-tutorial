@@ -44,15 +44,15 @@ class SampleBlogEntryProperties
       switch ($this->getAction()) {
       case 'list':
         return array(
-          'detail' => array('SampleBlogEntry_detail'),
-          'insert' => array('SampleBlogEntry_insert'),
+          'detail' => array('SampleBlogEntry_view'),
+          'insert' => array('SampleBlogEntry_edit'),
           'delete' => array('SampleBlogEntry_delete'),
           'select_delete' => array('SampleBlogEntry_delete'),
         );
       case 'detail':
         return array(
-          'list' => array('SampleBlogEntry_list'),
-          'update' => array('SampleBlogEntry_update'),
+          'list' => array('SampleBlogEntry_view'),
+          'update' => array('SampleBlogEntry_edit'),
           'delete' => array('SampleBlogEntry_delete'),
         );
       }
@@ -62,11 +62,11 @@ class SampleBlogEntryProperties
     switch ($this->getAction()) {
     case 'list':
       return array(
-        'detail' => array('SampleBlogEntry_detail'),
+        'detail' => array('SampleBlogEntry_view'),
       );
     case 'detail':
       return array(
-        'list' => array('SampleBlogEntry_list'),
+        'list' => array('SampleBlogEntry_view'),
       );
     }
 
@@ -160,14 +160,14 @@ class SampleBlogEntryProperties
     case 'list':
       return array_merge(
         array(
-          'Title' => array('path', 'SampleBlogEntry_detail', array('_pk' => 'PK')),
+          'Title' => array('path', 'SampleBlogEntry_view', array('_pk' => 'PK')),
         ),
         parent::getFieldsLink()
       );
     case 'detail':
       return array_merge(
         array(
-          'Category' => array('path', 'SampleBlogCategory_detail', array('_pk' => 'CategoryFK')),
+          'Category' => array('path', 'SampleBlogCategory_view', array('_pk' => 'CategoryFK')),
         ),
         parent::getFieldsLink()
       );
@@ -203,7 +203,7 @@ class SampleBlogEntryProperties
     case 'detail':
       return array_merge(
         array(
-          '_view_list' => array('path+query', 'SampleBlogEntry_list', null, '⊛'),
+          '_view_list' => array('path+query', 'SampleBlogEntry_view', null, '⊛'),
         ),
         parent::getFooterLinks()
       );

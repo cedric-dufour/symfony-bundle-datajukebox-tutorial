@@ -55,15 +55,15 @@ class SampleBlogCategoryProperties
       switch ($this->getAction()) {
       case 'list':
         return array(
-          'detail' => array('SampleBlogCategory_detail'),
-          'insert' => array('SampleBlogCategory_insert'),
+          'detail' => array('SampleBlogCategory_view'),
+          'insert' => array('SampleBlogCategory_edit'),
           'delete' => array('SampleBlogCategory_delete'),
           'select_delete' => array('SampleBlogCategory_delete'),
         );
       case 'detail':
         return array(
-          'list' => array('SampleBlogCategory_list'),
-          'update' => array('SampleBlogCategory_update'),
+          'list' => array('SampleBlogCategory_view'),
+          'update' => array('SampleBlogCategory_edit'),
           'delete' => array('SampleBlogCategory_delete'),
         );
       }
@@ -73,11 +73,11 @@ class SampleBlogCategoryProperties
     switch ($this->getAction()) {
     case 'list':
       return array(
-        'detail' => array('SampleBlogCategory_detail'),
+        'detail' => array('SampleBlogCategory_view'),
       );
     case 'detail':
       return array(
-        'list' => array('SampleBlogCategory_list'),
+        'list' => array('SampleBlogCategory_view'),
       );
     }
 
@@ -152,7 +152,7 @@ class SampleBlogCategoryProperties
     case 'list':
       return array_merge(
         array(
-          'Name' => array('path', 'SampleBlogCategory_detail', array('_pk' => 'PK')),
+          'Name' => array('path', 'SampleBlogCategory_view', array('_pk' => 'PK')),
         ),
         parent::getFieldsLink()
       );
@@ -182,7 +182,7 @@ class SampleBlogCategoryProperties
     case 'detail':
       return array_merge(
         array(
-          '_view_list' => array('path+query', 'SampleBlogCategory_list', null, '⊛'),
+          '_view_list' => array('path+query', 'SampleBlogCategory_view', null, '⊛'),
         ),
         parent::getFooterLinks()
       );

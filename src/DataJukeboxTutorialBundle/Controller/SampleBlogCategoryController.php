@@ -33,26 +33,26 @@ class SampleBlogCategoryController
     return SampleBlogCategoryProperties::AUTH_PUBLIC;
   }
 
-  /** Create the 'list' view
+  /** Create the 'list' or 'detail' view
    */
-  public function listAction(Request $oRequest)
+  public function viewAction($_pk, Request $oRequest)
   {
     // Properties
     $oDataJukebox = $this->get('DataJukebox');
     $iAuthorization = $this->getAuthorization();
     $oProperties = $oDataJukebox->getProperties('DataJukeboxTutorialBundle:SampleBlogCategoryEntity')
                                 ->setAuthorization($iAuthorization)
-                                ->setAction('list')
+                                ->setAction(is_null($_pk) ? 'list' : 'detail')
                                 ->setTranslator($this->get('translator'));
     if (!$oProperties->isAuthorized()) throw new AccessDeniedException();
 
     // Browsing
     $oBrowser = $oProperties->getBrowser($oRequest);
-    if (!$oBrowser->getFieldsOrder()) $oBrowser->setFieldsOrder('Name_A');
+    if (is_null($_pk) and !$oBrowser->getFieldsOrder()) $oBrowser->setFieldsOrder('Name_A');
 
     // Data query
     $oRepository = $oDataJukebox->getRepository($oProperties);
-    $oResult = $oRepository->getDataList($oBrowser);
+    $oResult = $oRepository->getDataResult($_pk, $oBrowser);
 
     // Response
     return $this->render(
@@ -61,86 +61,22 @@ class SampleBlogCategoryController
     );
   }
 
-  /** Create the 'detail' view
+  /** Create the 'insert' or 'update' view
    */
-  public function detailAction($_pk, Request $oRequest)
+  public function editAction($_pk, Request $oRequest)
   {
     // Properties
     $oDataJukebox = $this->get('DataJukebox');
     $iAuthorization = $this->getAuthorization();
     $oProperties = $oDataJukebox->getProperties('DataJukeboxTutorialBundle:SampleBlogCategoryEntity')
                                 ->setAuthorization($iAuthorization)
-                                ->setAction('detail')
-                                ->setTranslator($this->get('translator'));
-    if (!$oProperties->isAuthorized()) throw new AccessDeniedException();
-
-    // Browsing
-    $oBrowser = $oProperties->getBrowser($oRequest);
-
-    // Data query
-    $oRepository = $oDataJukebox->getRepository($oProperties);
-    $oResult = $oRepository->getDataDetail($_pk, $oBrowser);
-
-    // Response
-    return $this->render(
-      $oProperties->getTemplate(),
-      array('data' => $oResult->getTemplateData())
-    );
-  }
-
-  /** Create the 'insert' view
-   */
-  public function insertAction(Request $oRequest)
-  {
-    // Properties
-    $oDataJukebox = $this->get('DataJukebox');
-    $iAuthorization = $this->getAuthorization();
-    $oProperties = $oDataJukebox->getProperties('DataJukeboxTutorialBundle:SampleBlogCategoryEntity')
-                                ->setAuthorization($iAuthorization)
-                                ->setAction('insert')
-                                ->setTranslator($this->get('translator'));
-    if (!$oProperties->isAuthorized()) throw new AccessDeniedException();
-
-    // Form resources
-    $oFormType = $oDataJukebox->getFormType($oProperties);
-    $oForm = $this->createForm($oFormType);
-
-    // Form handling
-    $oForm->handleRequest($oRequest);
-    if ($oForm->isValid()) {
-      $oData = $oForm->getData();
-      $oEntityManager = $oProperties->getEntityManager();
-      $oEntityManager->persist($oData);
-      $oEntityManager->flush();
-      return $this->redirectToRoute('SampleBlogCategory_detail', $oFormType->getPrimaryKeySlug($oData));
-    }
-
-    // Response
-    return $this->render(
-      $oProperties->getTemplate(),
-      array(
-        'form' => $oForm->createView(),
-        'data' => array('properties' => $oProperties->getTemplateData()),
-      )
-    );
-  }
-
-  /** Create the 'update' view
-   */
-  public function updateAction($_pk, Request $oRequest)
-  {
-    // Properties
-    $oDataJukebox = $this->get('DataJukebox');
-    $iAuthorization = $this->getAuthorization();
-    $oProperties = $oDataJukebox->getProperties('DataJukeboxTutorialBundle:SampleBlogCategoryEntity')
-                                ->setAuthorization($iAuthorization)
-                                ->setAction('update')
+                                ->setAction(is_null($_pk) ? 'insert' : 'update')
                                 ->setTranslator($this->get('translator'));
     if (!$oProperties->isAuthorized()) throw new AccessDeniedException();
 
     // Data query
     $oRepository = $oDataJukebox->getRepository($oProperties);
-    $oData = $oRepository->getDataObject($_pk);
+    $oData = is_null($_pk) ? null : $oRepository->getDataEntity($_pk);
 
     // Form resources
     $oFormType = $oDataJukebox->getFormType($oProperties);
@@ -153,7 +89,7 @@ class SampleBlogCategoryController
       $oEntityManager = $oProperties->getEntityManager();
       $oEntityManager->persist($oData);
       $oEntityManager->flush();
-      return $this->redirectToRoute('SampleBlogCategory_detail', $oFormType->getPrimaryKeySlug($oData));
+      return $this->redirectToRoute('SampleBlogCategory_view', $oFormType->getPrimaryKeySlug($oData));
     }
 
     // Response
@@ -190,14 +126,14 @@ class SampleBlogCategoryController
       $oRepository = $oDataJukebox->getRepository($oProperties);
       $oEntityManager = $oProperties->getEntityManager();
       foreach ($asPK as $sPK) {
-        $oData = $oRepository->getDataObject($sPK);
+        $oData = $oRepository->getDataEntity($sPK);
         $oEntityManager->remove($oData);
       }
       $oEntityManager->flush();
     }
 
     // Response
-    return $this->redirectToRoute('SampleBlogCategory_list', $oRequest->query->all());
+    return $this->redirectToRoute('SampleBlogCategory_view', $oRequest->query->all());
   }
 
 }
