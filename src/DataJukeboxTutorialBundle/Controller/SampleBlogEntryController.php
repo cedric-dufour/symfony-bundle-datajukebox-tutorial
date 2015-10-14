@@ -136,4 +136,40 @@ class SampleBlogEntryController
     return $this->redirectToRoute('SampleBlogEntry_view', $oRequest->query->all());
   }
 
+  /** Create the 'export' view
+   */
+  public function exportAction($_format, $_pk, Request $oRequest)
+  {
+    // Properties
+    $oDataJukebox = $this->get('DataJukebox');
+    $iAuthorization = $this->getAuthorization();
+    $oProperties = $oDataJukebox->getProperties('DataJukeboxTutorialBundle:SampleBlogEntryViewEntity')
+                                ->setAuthorization($iAuthorization)
+                                ->setAction('export')
+                                ->setFormat($_format);
+    if (!$oProperties->isAuthorized()) throw new AccessDeniedException();
+
+    // Browsing
+    $oBrowser = $oProperties->getBrowser($oRequest);
+    $oBrowser->setOffset(0)->setLimit(PHP_INT_MAX);
+    if (is_null($_pk) and !$oBrowser->getFieldsOrder()) $oBrowser->setFieldsOrder('Date_D');
+
+    // Data query
+    $oRepository = $oDataJukebox->getRepository($oProperties);
+    $oResult = $oRepository->getDataResult($_pk, $oBrowser);
+
+    // Response
+    $asMimetype = array('xml' => 'text/xml', 'json' => 'application/json', 'csv' => 'text/csv');
+    $sResponse = $this->renderView(
+      $oProperties->getTemplate(),
+      array('data' => $oResult->getTemplateData())
+    );
+    $oResponse = new \Symfony\Component\HttpFoundation\Response($sResponse);
+    $oResponse->headers->set('Cache-Control', 'private');
+    $oResponse->headers->set('Content-Type', $asMimetype[$_format]);
+    $oResponse->headers->set('Content-Length', strlen($sResponse));
+    $oResponse->headers->set('Content-Disposition', sprintf('attachment; filename="%s.%s";', $oProperties->getName(), $_format));
+    return $oResponse;
+  }
+
 }

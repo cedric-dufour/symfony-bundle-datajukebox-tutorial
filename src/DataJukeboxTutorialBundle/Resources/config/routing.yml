@@ -37,3 +37,10 @@ SampleBlogEntry_delete:
   defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:delete, _pk: null }
   requirements:
     _pk: \d{1,}
+
+SampleBlogEntry_export:
+  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/export/{_format}/{_pk}
+  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:export, _pk: null }
+  requirements:
+    _format: "xml|json|csv"
+    _pk: \d{1,}

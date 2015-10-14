@@ -193,16 +193,19 @@ class SampleBlogCategoryProperties
   // Return the Twig template for each action
   public function getTemplate()
   {
-    switch ($this->getAction()) {
-    case 'list':
-      return 'DataJukeboxTutorialBundle::list.html.twig';
-    case 'detail':
-      return 'DataJukeboxTutorialBundle::detail.html.twig';
-    case 'insert':
-    case 'update':
-      return 'DataJukeboxTutorialBundle::form.html.twig';
+    switch ($this->getFormat()) {
+    case 'html':
+      switch ($this->getAction()) {
+      case 'list':
+        return 'DataJukeboxTutorialBundle::list.html.twig';
+      case 'detail':
+        return 'DataJukeboxTutorialBundle::detail.html.twig';
+      case 'insert':
+      case 'update':
+        return 'DataJukeboxTutorialBundle::form.html.twig';
+      }
     }
-    throw new \Exception(sprintf('Invalid action (%s)', $this->getAction()));
+    return parent::getTemplate();
   }
 
 }
