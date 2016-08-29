@@ -15,7 +15,7 @@ class SampleBlogEntryProperties
    */
   const AUTH_ADMIN = 9;
 
-  
+
   /*
    * METHODS: Properties(Interface)
    ********************************************************************************/
@@ -226,7 +226,7 @@ class SampleBlogEntryProperties
     throw new \Exception(sprintf('Invalid action (%s)', $this->getAction()));
   }
 
-  
+
   /*
    * METHODS: FormatInterface
    ********************************************************************************/

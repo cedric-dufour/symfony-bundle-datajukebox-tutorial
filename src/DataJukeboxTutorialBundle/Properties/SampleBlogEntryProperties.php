@@ -27,7 +27,7 @@ class SampleBlogEntryProperties
    */
   const AUTH_ADMIN = 9;
 
-  
+
   /*
    * METHODS: Properties(Interface)
    ********************************************************************************/
@@ -244,7 +244,7 @@ class SampleBlogEntryProperties
     return parent::getTemplate();
   }
 
-  
+
   /*
    * METHODS: FormatInterface
    ********************************************************************************/

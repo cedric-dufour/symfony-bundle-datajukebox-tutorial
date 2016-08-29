@@ -26,7 +26,7 @@ class SampleBlogCategoryProperties
    */
   const AUTH_ADMIN = 9;
 
-  
+
   /*
    * METHODS: Properties(Interface)
    ********************************************************************************/
