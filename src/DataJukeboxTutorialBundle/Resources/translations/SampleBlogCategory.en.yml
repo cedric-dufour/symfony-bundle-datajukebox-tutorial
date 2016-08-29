@@ -4,7 +4,7 @@ label:
   _title_form: Category
   Name: Name
   Description: Description
-  
+
 tooltip:
   Name: Category name
   Description: Category description

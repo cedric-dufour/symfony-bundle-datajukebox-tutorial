@@ -1,7 +1,7 @@
 DataJukeboxTutorial_home:
   path: /DataJukeboxTutorial
   defaults: { _controller: FrameworkBundle:Redirect:redirect, route: SampleBlogEntry_view }
-  
+
 SampleBlogCategory_view:
   path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/{_pk}
   defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:view, _pk:null }
