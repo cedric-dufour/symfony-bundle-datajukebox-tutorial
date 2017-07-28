@@ -1,14 +1,14 @@
 label:
-  _title_list: Articles
-  _title_detail: Article
-  _title_form: Article
-  Title: Titre
-  Category: Catégorie
-  Content: Contenu
-  Tags: Mots-clés
+  _title_list: 'Articles'
+  _title_detail: 'Article'
+  _title_form: 'Article'
+  Title: 'Titre'
+  Category: 'Catégorie'
+  Content: 'Contenu'
+  Tags: 'Mots-clés'
 
 tooltip:
-  Title: Titre de l 'article
-  Category: Catégorie de l'article
-  Content: Contenu/texte de l'article
-  Tags: Mots-clés associés à l'article
+  Title: 'Titre de l ''article'
+  Category: 'Catégorie de l''article'
+  Content: 'Contenu/texte de l''article'
+  Tags: 'Mots-clés associés à l''article'

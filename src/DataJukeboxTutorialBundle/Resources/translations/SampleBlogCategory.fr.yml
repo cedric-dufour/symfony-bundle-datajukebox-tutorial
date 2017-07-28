@@ -1,10 +1,10 @@
 label:
-  _title_list: Catégories
-  _title_detail: Catégorie
-  _title_form: Catégorie
-  Name: Nom
-  Description: Description
+  _title_list: 'Catégories'
+  _title_detail: 'Catégorie'
+  _title_form: 'Catégorie'
+  Name: 'Nom'
+  Description: 'Description'
 
 tooltip:
-  Name: Nom de la catégorie
-  Description: Description de la catégorie
+  Name: 'Nom de la catégorie'
+  Description: 'Description de la catégorie'

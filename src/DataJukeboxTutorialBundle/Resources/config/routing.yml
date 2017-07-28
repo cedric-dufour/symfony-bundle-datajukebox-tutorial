@@ -1,46 +1,46 @@
 DataJukeboxTutorial_home:
-  path: /DataJukeboxTutorial
-  defaults: { _controller: FrameworkBundle:Redirect:redirect, route: SampleBlogEntry_view }
+  path: '/DataJukeboxTutorial'
+  defaults: { _controller: 'FrameworkBundle:Redirect:redirect', route: 'SampleBlogEntry_view' }
 
 SampleBlogCategory_view:
-  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/{_pk}
-  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:view, _pk:null }
+  path: '/DataJukeboxTutorial/{_locale}/SampleBlog/Category/{_pk}'
+  defaults: { _controller: 'DataJukeboxTutorialBundle:SampleBlogCategory:view', _pk: null }
   requirements:
-    _pk: \d{1,}
+    _pk: '\d{1,}'
 
 SampleBlogCategory_edit:
-  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/edit/{_pk}
-  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:edit, _pk:null }
+  path: '/DataJukeboxTutorial/{_locale}/SampleBlog/Category/edit/{_pk}'
+  defaults: { _controller: 'DataJukeboxTutorialBundle:SampleBlogCategory:edit', _pk: null }
   requirements:
-    _pk: \d{1,}
+    _pk: '\d{1,}'
 
 SampleBlogCategory_delete:
-  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Category/delete/{_pk}
-  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogCategory:delete, _pk: null }
+  path: '/DataJukeboxTutorial/{_locale}/SampleBlog/Category/delete/{_pk}'
+  defaults: { _controller: 'DataJukeboxTutorialBundle:SampleBlogCategory:delete', _pk: null }
   requirements:
-    _pk: \d{1,}
+    _pk: '\d{1,}'
 
 SampleBlogEntry_view:
-  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/{_pk}
-  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:view, _pk: null }
+  path: '/DataJukeboxTutorial/{_locale}/SampleBlog/Entry/{_pk}'
+  defaults: { _controller: 'DataJukeboxTutorialBundle:SampleBlogEntry:view', _pk: null }
   requirements:
-    _pk: \d{1,}
+    _pk: '\d{1,}'
 
 SampleBlogEntry_edit:
-  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/edit/{_pk}
-  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:edit, _pk: null }
+  path: '/DataJukeboxTutorial/{_locale}/SampleBlog/Entry/edit/{_pk}'
+  defaults: { _controller: 'DataJukeboxTutorialBundle:SampleBlogEntry:edit', _pk: null }
   requirements:
-    _pk: \d{1,}
+    _pk: '\d{1,}'
 
 SampleBlogEntry_delete:
-  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/delete/{_pk}
-  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:delete, _pk: null }
+  path: '/DataJukeboxTutorial/{_locale}/SampleBlog/Entry/delete/{_pk}'
+  defaults: { _controller: 'DataJukeboxTutorialBundle:SampleBlogEntry:delete', _pk: null }
   requirements:
-    _pk: \d{1,}
+    _pk: '\d{1,}'
 
 SampleBlogEntry_export:
-  path: /DataJukeboxTutorial/{_locale}/SampleBlog/Entry/export/{_format}/{_pk}
-  defaults: { _controller: DataJukeboxTutorialBundle:SampleBlogEntry:export, _pk: null }
+  path: '/DataJukeboxTutorial/{_locale}/SampleBlog/Entry/export/{_format}/{_pk}'
+  defaults: { _controller: 'DataJukeboxTutorialBundle:SampleBlogEntry:export', _pk: null }
   requirements:
-    _format: "xml|json|csv"
-    _pk: \d{1,}
+    _format: 'xml|json|csv'
+    _pk: '\d{1,}'
