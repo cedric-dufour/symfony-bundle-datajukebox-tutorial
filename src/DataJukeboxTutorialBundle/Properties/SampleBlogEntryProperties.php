@@ -233,12 +233,12 @@ class SampleBlogEntryProperties
     case 'html':
       switch ($this->getAction()) {
       case 'list':
-        return 'DataJukeboxTutorialBundle::list.html.twig';
+        return '@DataJukeboxTutorial/list.html.twig';
       case 'detail':
-        return 'DataJukeboxTutorialBundle::detail.html.twig';
+        return '@DataJukeboxTutorial/detail.html.twig';
       case 'insert':
       case 'update':
-        return 'DataJukeboxTutorialBundle::form.html.twig';
+        return '@DataJukeboxTutorial/form.html.twig';
       }
     }
     return parent::getTemplate();
