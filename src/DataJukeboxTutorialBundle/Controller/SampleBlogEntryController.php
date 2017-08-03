@@ -11,8 +11,9 @@
 namespace DataJukeboxTutorialBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
+use DataJukeboxBundle\Controller\Controller;
 
 use DataJukeboxTutorialBundle\Properties\SampleBlogEntryProperties;
 
