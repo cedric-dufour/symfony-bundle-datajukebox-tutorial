@@ -7,28 +7,21 @@
     <META CHARSET="UTF-8" />
     <TITLE>Data Jukebox Tutorial - Sample Blog Application</TITLE>
     {% block stylesheets -%}
-      {%- stylesheets
-      'bundles/datajukebox/css/jquery-ui.css'
-      'bundles/datajukebox/css/jquery-ui-timepicker-addon.css'
-      'bundles/datajukebox/css/DataJukebox.css'
-      filter='cssrewrite'
-      %}
-      <LINK REL="stylesheet" HREF="{{ asset_url }}" />
-      {% endstylesheets %}
+      <LINK REL="stylesheet" HREF="{{ asset('bundles/datajukebox/css/jquery-ui.css') }}" />
+      <LINK REL="stylesheet" HREF="{{ asset('bundles/datajukebox/css/jquery-ui-timepicker-addon.css') }}" />
+      <LINK REL="stylesheet" HREF="{{ asset('bundles/datajukebox/css/DataJukebox.css') }}" />
     {% endblock stylesheets %}
-    {% javascripts
-    'bundles/datajukebox/js/jquery.js'
-    'bundles/datajukebox/js/jquery-ui.js'
-    'bundles/datajukebox/js/jquery-ui-timepicker-addon.js'
-    'bundles/datajukebox/js/DataJukebox.js'
-    %}
-    <SCRIPT TYPE="text/javascript" SRC="{{ asset_url }}"></SCRIPT>
-    {% endjavascripts %}
+    {% block javascripts -%}
+      <SCRIPT TYPE="text/javascript" SRC="{{ asset('bundles/datajukebox/js/jquery.js') }}"></SCRIPT>
+      <SCRIPT TYPE="text/javascript" SRC="{{ asset('bundles/datajukebox/js/jquery-ui.js') }}"></SCRIPT>
+      <SCRIPT TYPE="text/javascript" SRC="{{ asset('bundles/datajukebox/js/jquery-ui-timepicker-addon.js') }}"></SCRIPT>
+      <SCRIPT TYPE="text/javascript" SRC="{{ asset('bundles/datajukebox/js/DataJukebox.js') }}"></SCRIPT>
+    {% endblock javascripts %}
   </HEAD>
   <BODY>
     {% block body %}{% endblock body %}
-    {% block javascripts %}
+    {% block javascripts_body %}
       <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">/*<![CDATA[*/$("input:text:visible:first").focus();/*]]>*/</SCRIPT>
-    {% endblock javascripts %}
+    {% endblock javascripts_body %}
   </BODY>
 </HTML>
